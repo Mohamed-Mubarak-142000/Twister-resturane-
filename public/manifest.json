@@ -1,0 +1,40 @@
+{
+  "name": "تويستر كريب وبيتزا",
+  "short_name": "تويستر",
+  "description": "أفضل كريب وبيتزا في القاهرة — اطلب أونلاين الآن",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0F0F0F",
+  "theme_color": "#D62828",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["food", "restaurants", "delivery"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "المنيو",
+      "url": "/menu",
+      "description": "تصفح المنيو الكامل"
+    },
+    {
+      "name": "العروض",
+      "url": "/offers",
+      "description": "عروض وخصومات"
+    }
+  ]
+}
