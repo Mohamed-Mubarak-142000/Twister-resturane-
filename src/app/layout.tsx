@@ -71,7 +71,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-[#0F0F0F] text-white antialiased">
+      <body
+        className="min-h-full flex flex-col bg-[#0F0F0F] text-white antialiased"
+        suppressHydrationWarning
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

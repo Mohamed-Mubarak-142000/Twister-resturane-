@@ -55,9 +55,16 @@ const CONFETTI_COLORS = ["#D62828", "#F4B400", "#ffffff", "#22C55E", "#7C3AED"];
 export default function CheckoutPage() {
   const router = useRouter();
   const [stage, setStage] = useState<Stage>("form");
-  const [orderId] = useState(() => `TW-${Date.now().toString().slice(-6)}`);
+  const [orderId, setOrderId] = useState<string>("");
   const [savedData, setSavedData] = useState<FormData | null>(null);
   const [dotCount, setDotCount] = useState(1);
+
+  // Generate orderId only on client-side to prevent hydration mismatch
+  useEffect(() => {
+    if (!orderId) {
+      setOrderId(`TW-${Date.now().toString().slice(-6)}`);
+    }
+  }, [orderId]);
 
   // GSAP refs
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -267,9 +274,15 @@ export default function CheckoutPage() {
 
   // ── Submit ────────────────────────────────────────────────
   const onSubmit = async (data: FormData) => {
+    // Safety check: ensure orderId is generated
+    if (!orderId) {
+      console.error("[Checkout] Order ID not generated yet");
+      return;
+    }
+
     setSavedData(data);
 
-    // 1. Save order to CSV — await so we can surface failures to the user
+    // 1. Save order to Google Sheets — await so we can surface failures to the user
     const saveResult = await saveOrderAction({
       id: orderId,
       timestamp: new Date().toISOString(),
